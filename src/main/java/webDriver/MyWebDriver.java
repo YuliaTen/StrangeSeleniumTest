@@ -4,9 +4,8 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import webElement.MyWebElement;
 import java.util.concurrent.TimeUnit;
 
 public class MyWebDriver implements AfterEachCallback {
@@ -20,18 +19,21 @@ public class MyWebDriver implements AfterEachCallback {
         driver.get(link);
     }
 
-
-
-    public static WebElement $x(String xpathExpression) {
-        return driver.findElement(By.xpath(xpathExpression));
+    public static void waitImage(long mlSec){
+        try {
+            // в течение 1000 миллисекунд
+            Thread.sleep(mlSec);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
-    public static WebElement $(String css) {
-        return driver.findElement(By.cssSelector(css));
+    public  static MyWebElement $x(String xpathExpression) {
+        return new MyWebElement(driver.findElement(By.xpath(xpathExpression)));
     }
 
-    public static void waitImage(){
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    public static MyWebElement $(String css) {
+        return new MyWebElement(driver.findElement(By.cssSelector(css)));
     }
 
     public void afterEach(ExtensionContext extensionContext) throws Exception {
