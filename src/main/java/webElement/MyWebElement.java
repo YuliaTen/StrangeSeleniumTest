@@ -13,7 +13,14 @@ public class MyWebElement extends RemoteWebElement implements WebElement {
     }
 
     public MyWebElement shouldBe(Condition... var1) {
-        waitImage(5000);
+        for (int i=0; i<5; i++) {
+            if (this.isDisplayed())
+                return this;
+            else {
+                waitImage(5000);
+            }
+        }
+        System.out.println("элемент был не найден в зоне видимости");
         return this;
     }
 
@@ -53,7 +60,7 @@ public class MyWebElement extends RemoteWebElement implements WebElement {
     public MyWebElement findElement(By by) { return new MyWebElement(remoteElement.findElement(by)); }
 
     @Override
-    public boolean isDisplayed() { return false; }
+    public boolean isDisplayed() { return remoteElement.isDisplayed(); }
 
     @Override
     public Point getLocation() {return null; }

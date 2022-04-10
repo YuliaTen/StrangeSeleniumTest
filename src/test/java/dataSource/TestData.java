@@ -1,19 +1,21 @@
 package dataSource;
 
 public class TestData {
-   private static final String LOGIN = "yuliatestirova";
-   private static final String PASS = "AsdLkjVbn-510";
+    static final String LOGIN = "eXVsaWF0ZXN0aXJvdmE";
+    static final String PASS = "QXNkTGtqVmJuLTUxMA";
+    private static String loginMail = Base64.decode(LOGIN);
+    private static String passwordMail = Base64.decode(PASS);
    private static String  startURL = "https://mail.yandex.ru/";
 
     public static String getStartURL() {
         return startURL;
     }
 
-    public static String getLOGIN() {
-        return LOGIN;
+    public static String getLoginMail() {
+        return loginMail;
     }
 
-    public static String getPASS() {
-        return PASS;
+    public static String getPasswordMail() {
+        return passwordMail;
     }
 }

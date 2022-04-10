@@ -15,12 +15,12 @@ public class SeleniumMail  {
      void login() throws InterruptedException {
         MailLoginPage mp = new MailLoginPage();
         (mp.getIncomeBtn()).shouldBe(visible).click();;
-        (mp.getLoginField()).sendKeys(TestData.getLOGIN());
+        (mp.getLoginField()).sendKeys(TestData.getLoginMail());
        (mp.getLoginBtn()).shouldBe(visible).click();;
-        (mp.getPasswdField()).sendKeys(TestData.getPASS());
+        (mp.getPasswdField()).sendKeys(TestData.getPasswordMail());
         (mp.getLoginBtn()).shouldBe(visible).click();
         waitImage(5000);
-        Assertions.assertTrue(mp.getLoginMail().getText().contains(TestData.getLOGIN()));
+        Assertions.assertTrue(mp.getLoginMail().getText().contains(TestData.getLoginMail()));
         mp.getOut().click();
     }
 }
