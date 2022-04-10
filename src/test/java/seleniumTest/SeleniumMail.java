@@ -19,7 +19,7 @@ public class SeleniumMail  {
        (mp.getLoginBtn()).shouldBe(visible).click();;
         (mp.getPasswdField()).sendKeys(TestData.getPasswordMail());
         (mp.getLoginBtn()).shouldBe(visible).click();
-        waitImage(5000);
+        waitImage(10000);
         Assertions.assertTrue(mp.getLoginMail().getText().contains(TestData.getLoginMail()));
         mp.getOut().click();
     }

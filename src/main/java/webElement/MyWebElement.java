@@ -13,13 +13,22 @@ public class MyWebElement extends RemoteWebElement implements WebElement {
     }
 
     public MyWebElement shouldBe(Condition... var1) {
-        for (int i=0; i<5; i++) {
-            if (this.isDisplayed())
+        boolean isDisplay =  false;
+        long startTime = System.currentTimeMillis();
+        do{
+            if (this.isDisplayed()) {
+                isDisplay=true;
                 return this;
+            }
             else {
-                waitImage(5000);
+                long timeMs = System.currentTimeMillis() - startTime;
+                if (timeMs - startTime > 60000){
+                    break;
+                }
+                else {waitImage(5000);}
             }
         }
+        while (isDisplay==true);
         System.out.println("элемент был не найден в зоне видимости");
         return this;
     }
