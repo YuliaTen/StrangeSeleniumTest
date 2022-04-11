@@ -14,13 +14,19 @@ public class SeleniumMail  {
     @Test
      void login() throws InterruptedException {
         MailLoginPage mp = new MailLoginPage();
-        (mp.getIncomeBtn()).shouldBe(visible).click();;
+        //нажать войти
+        (mp.getIncomeBtn()).shouldBe(visible).click();
+        //ввод логина
         (mp.getLoginField()).sendKeys(TestData.getLoginMail());
-       (mp.getLoginBtn()).shouldBe(visible).click();;
+       (mp.getLoginBtn()).shouldBe(visible).click();
+       // ввод пароля
         (mp.getPasswdField()).sendKeys(TestData.getPasswordMail());
         (mp.getLoginBtn()).shouldBe(visible).click();
+        // ожидание
         waitImage(10000);
+        // проверка соответствия отображаемого логина пользователя с вводимым
         Assertions.assertTrue(mp.getLoginMail().getText().contains(TestData.getLoginMail()));
+        //выйти из сервисов Яндекса
         mp.getOut().click();
     }
 }

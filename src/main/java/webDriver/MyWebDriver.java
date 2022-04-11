@@ -19,22 +19,25 @@ public class MyWebDriver implements AfterEachCallback {
         driver.get(link);
     }
 
+    //ожидание отображения
     public static void waitImage(long mlSec){
         try {
-            // в течение 1000 миллисекунд
             Thread.sleep(mlSec);
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
+    //метод имитирующий вызов функции поиска по xpath Selenide
     public  static MyWebElement $x(String xpathExpression) {
         return new MyWebElement(driver.findElement(By.xpath(xpathExpression)));
     }
 
+    //метод имитирующий вызов функции поиска по cssSelector Selenide
     public static MyWebElement $(String css) {
         return new MyWebElement(driver.findElement(By.cssSelector(css)));
     }
+
 
     public void afterEach(ExtensionContext extensionContext) throws Exception {
         driver.quit();

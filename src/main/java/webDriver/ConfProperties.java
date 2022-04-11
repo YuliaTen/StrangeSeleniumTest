@@ -3,6 +3,8 @@ package webDriver;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+
+// класс для хранения настроек из файла conf.properties
 public class ConfProperties {
     protected static FileInputStream fileInputStream;
     protected static Properties PROPERTIES;

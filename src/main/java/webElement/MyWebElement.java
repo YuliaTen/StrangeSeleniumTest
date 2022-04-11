@@ -1,34 +1,28 @@
 package webElement;
 
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebElement;
 import java.util.List;
 import static webDriver.MyWebDriver.waitImage;
 
 public class MyWebElement extends RemoteWebElement implements WebElement {
+
+    //расширяем WebElement с помощью паттерна Декоратор для добавления новых методов в текущий функционал
     RemoteWebElement remoteElement;
     public MyWebElement(WebElement remoteElement){
         this.remoteElement = (RemoteWebElement) remoteElement;
     }
 
+    // метод получения видимости у текущего элемента
     public MyWebElement shouldBe(Condition... var1) {
-        boolean isDisplay =  false;
         long startTime = System.currentTimeMillis();
+        long timeMs=0;
         do{
-            if (this.isDisplayed()) {
-                isDisplay=true;
-                return this;
-            }
-            else {
-                long timeMs = System.currentTimeMillis() - startTime;
-                if (timeMs - startTime > 60000){
-                    break;
-                }
-                else {waitImage(5000);}
-            }
+            if (this.isDisplayed()) { return this;}
+            timeMs = System.currentTimeMillis() - startTime;
+            waitImage(5000);
         }
-        while (isDisplay==true);
+        while (this.isDisplayed() || (timeMs - startTime) >= 60000);
         System.out.println("элемент был не найден в зоне видимости");
         return this;
     }
